@@ -10,7 +10,7 @@ defmodule Cards do
     Returns a list of strings that represent a deck of playing cards
   """
   def create_deck do
-    values = ["Ace", "Two", "Three", "Four", "Five", "Six"]
+    values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
     suits = ["Hearts", "Clubs", "Spades", "Diamonds"]
 
     for suit <- suits, value <- values do
@@ -27,6 +27,13 @@ defmodule Cards do
 
   @doc """
     Verifies if the deck still contains a specific card.
+
+  ## Examples
+
+        iex> deck = Cards.create_deck
+        iex> Cards.contains?(deck, "Ace of Spades")
+        true
+
   """
   def contains?(deck, card) do
     Enum.member?(deck, card)
@@ -35,6 +42,14 @@ defmodule Cards do
   @doc """
     Divides a deck into a hand and the remainder of the deck.
     The 'hand-size' argument indicates how many cards should be in the hand.
+
+  ## Examples
+
+      iex> deck = Cards.create_deck
+      iex> {hand, deck} = Cards.deal(deck, 1)
+      iex> hand
+      ["Ace of Hearts"]
+
   """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
